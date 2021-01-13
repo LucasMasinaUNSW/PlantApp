@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NavLink from "../navLink/navLink";
+import Logo from "../logo/logo";
 import "./navBar.css";
 
 class NavBar extends Component {
@@ -16,6 +17,9 @@ class NavBar extends Component {
       <div>
         <nav>
           <ul>
+            <Link to="/">
+              <Logo />
+            </Link>
             {this.state.navLinks.map((navLink) => (
               <Link to={navLink.path}>
                 <NavLink key={navLink.id} value={navLink.value} />
