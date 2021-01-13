@@ -6,7 +6,6 @@ class UserPage extends Component {
   render() {
     return (
       <div>
-        <Welcome />
         <h1>user</h1>
       </div>
     );

@@ -8,12 +8,11 @@ class NewPlantForm extends Component {
       name: "",
       image: "",
     },
+    file: null,
     onSubmit: this.props.onSubmit,
   };
 
   handleChange = this.handleChange.bind(this);
-
-  validateInput = () => {};
 
   handleChange(event) {
     const name = event.target.name;
@@ -21,6 +20,18 @@ class NewPlantForm extends Component {
     this.state.plant[name] = value;
     this.setState(this.state);
   }
+
+  handleFileChange = (event) => {
+    this.state.file = event.target.files[0];
+    this.setState(this.state);
+  };
+
+  uploadFile = () => {
+    const data = new FormData();
+    data.append("file", this.state.file);
+    // post data to backend
+    console.log("uploaded file");
+  };
 
   render() {
     return (
@@ -43,9 +54,16 @@ class NewPlantForm extends Component {
             onChange={this.handleChange}
           />
         </label>
+        <label>
+          Upload file:
+          <input name="file" type="file" onChange={this.handleFileChange} />
+        </label>
         <Button
           text="Add Plant"
-          handleClick={() => this.state.onSubmit(this.state.plant)}
+          handleClick={() => {
+            this.uploadFile();
+            this.state.onSubmit(this.state.plant);
+          }}
         />
       </div>
     );

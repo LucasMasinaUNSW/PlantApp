@@ -12,6 +12,7 @@ class PlantPage extends Component {
   };
 
   handleAddPlant = (newPlant) => {
+    // TODO add id to plant object before pushing onto 'plants', use length of 'plants' as id
     this.state.plants.push(newPlant);
     this.setState({
       displayNewPlantForm: false,
@@ -29,7 +30,6 @@ class PlantPage extends Component {
   render() {
     return (
       <div>
-        <Welcome />
         <h1>plants</h1>
         {this.state.displayNewPlantForm && (
           <NewPlantForm onSubmit={this.handleAddPlant} />
