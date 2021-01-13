@@ -12,9 +12,10 @@ class PlantPage extends Component {
   };
 
   handleAddPlant = (newPlant) => {
+    this.state.plants.push(newPlant);
     this.setState({
       displayNewPlantForm: false,
-      plants: this.state.plants.push(newPlant),
+      plants: this.state.plants,
     });
   };
 
@@ -30,8 +31,10 @@ class PlantPage extends Component {
       <div>
         <Welcome />
         <h1>plants</h1>
-        {console.log(this.state.displayNewPlantForm)}
-        {this.state.displayNewPlantForm && <NewPlantForm />}
+        {console.log(this.state.plants)}
+        {this.state.displayNewPlantForm && (
+          <NewPlantForm onSubmit={this.handleAddPlant} />
+        )}
         {!this.state.displayNewPlantForm && (
           <Button
             text={"New Plant"}
