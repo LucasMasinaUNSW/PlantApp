@@ -31,7 +31,6 @@ class PlantPage extends Component {
       <div>
         <Welcome />
         <h1>plants</h1>
-        {console.log(this.state.plants)}
         {this.state.displayNewPlantForm && (
           <NewPlantForm onSubmit={this.handleAddPlant} />
         )}

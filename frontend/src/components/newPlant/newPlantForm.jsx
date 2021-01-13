@@ -11,13 +11,38 @@ class NewPlantForm extends Component {
     onSubmit: this.props.onSubmit,
   };
 
+  handleChange = this.handleChange.bind(this);
+
   validateInput = () => {};
+
+  handleChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.state.plant[name] = value;
+    this.setState(this.state);
+  }
 
   render() {
     return (
       <div>
-        <input type="text" value="Name" />
-        <input type="text" value="Image" />
+        <label>
+          Name
+          <input
+            name="name"
+            type="text"
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+        </label>
+        <label>
+          Image
+          <input
+            name="image"
+            type="text"
+            value={this.state.image}
+            onChange={this.handleChange}
+          />
+        </label>
         <Button
           text="Add Plant"
           handleClick={() => this.state.onSubmit(this.state.plant)}

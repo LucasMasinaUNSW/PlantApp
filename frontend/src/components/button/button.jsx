@@ -10,6 +10,7 @@ class Button extends Component {
   render() {
     return (
       <button
+        type="submit"
         onClick={this.state.handleClick}
         className="btn btn-secondary btn-lg"
       >
