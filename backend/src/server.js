@@ -1,19 +1,32 @@
-const express = require('express');
+const express = require("express");
 const app = express();
+const cors = require("cors");
+const multer = require("multer");
 
 // ROUTES
-const indexRoute = require('./routes/index');
-const plantsRoute = require('./routes/plants');
-const usersRoute = require('./routes/users');
+const indexRoute = require("./routes/index");
+const plantsRoute = require("./routes/plants");
+const usersRoute = require("./routes/users");
 
 // MIDDLEWARE
-app.use('/', indexRoute);
-app.use('/plants', plantsRoute);
-app.use('/users', usersRoute);
+app.use(cors());
+app.use("/", indexRoute);
+app.use("/plants", plantsRoute);
+app.use("/users", usersRoute);
+
+// FILE STORAGE
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public"); // TODO change to more meaningful folder, based on userID etc.
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname); // TODO maybe change name to include plantID etc.
+  },
+});
 
 // TODO replace with dotenv package stuff probably
 // PORT
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
-    console.log(`Listening on port ${port}...`);
+  console.log(`Listening on port ${port}...`);
 });
