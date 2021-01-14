@@ -7,6 +7,7 @@ class NewPlantForm extends Component {
   state = {
     plant: {
       name: "",
+      location: "",
       image: "",
     },
     file: null,
@@ -24,6 +25,7 @@ class NewPlantForm extends Component {
 
   handleFileChange = (event) => {
     this.state.file = event.target.files[0];
+    this.state.plant.image = event.target.files[0].name;
     this.setState(this.state);
   };
 
@@ -38,7 +40,6 @@ class NewPlantForm extends Component {
         // then print response status
         console.log(res.statusText);
       });
-    console.log("uploaded file");
   };
 
   render() {
@@ -54,11 +55,11 @@ class NewPlantForm extends Component {
           />
         </label>
         <label>
-          Image
+          Location
           <input
-            name="image"
+            name="location"
             type="text"
-            value={this.state.image}
+            value={this.state.location}
             onChange={this.handleChange}
           />
         </label>

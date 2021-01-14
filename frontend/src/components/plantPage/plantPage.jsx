@@ -41,7 +41,12 @@ class PlantPage extends Component {
           />
         )}
         {this.state.plants.map((plant) => (
-          <PlantPost key={plant.id} name={plant.name} image={plant.image} />
+          <PlantPost
+            key={plant.id}
+            name={plant.name}
+            location={plant.location}
+            image={plant.image}
+          />
         ))}
       </div>
     );

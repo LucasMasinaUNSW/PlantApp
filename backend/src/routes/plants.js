@@ -1,5 +1,6 @@
 const express = require("express");
 const multer = require("multer");
+const path = require("path");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -12,7 +13,7 @@ const storage = multer.diskStorage({
     cb(null, "public"); // TODO change to more meaningful folder, based on userID etc.
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname); // TODO maybe change name to include plantID etc.
+    cb(null, file.originalname); // TODO maybe change name to include plantID etc.
   },
 });
 
@@ -27,6 +28,12 @@ router.post("/upload", (req, res) => {
     }
     return res.status(200).send(req.file);
   });
+});
+
+router.get("/download/:file", (req, res) => {
+  const fileLocation = req.params.file;
+  const root = path.join(__dirname, "../../public/");
+  res.sendFile(`${fileLocation}`, { root: root });
 });
 
 module.exports = router;
