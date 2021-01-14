@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Button from "../button/button";
+import axios from "axios";
 import "./newPlantForm.css";
 
 class NewPlantForm extends Component {
@@ -29,7 +30,14 @@ class NewPlantForm extends Component {
   uploadFile = () => {
     const data = new FormData();
     data.append("file", this.state.file);
-    // post data to backend
+    axios
+      .post("http://localhost:8000/plants/upload", data, {
+        // receive two parameter endpoint url ,form data
+      })
+      .then((res) => {
+        // then print response status
+        console.log(res.statusText);
+      });
     console.log("uploaded file");
   };
 
