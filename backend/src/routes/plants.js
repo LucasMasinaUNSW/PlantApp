@@ -6,6 +6,18 @@ router.get("/", (req, res) => {
   res.send("Hello plants");
 });
 
+// FILE STORAGE
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public"); // TODO change to more meaningful folder, based on userID etc.
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname); // TODO maybe change name to include plantID etc.
+  },
+});
+
+var upload = multer({ storage: storage }).single("file");
+
 router.post("/upload", (req, res) => {
   upload(req, res, (err) => {
     if (err instanceof multer.MulterError) {

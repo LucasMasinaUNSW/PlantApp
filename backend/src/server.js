@@ -14,16 +14,6 @@ app.use("/", indexRoute);
 app.use("/plants", plantsRoute);
 app.use("/users", usersRoute);
 
-// FILE STORAGE
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public"); // TODO change to more meaningful folder, based on userID etc.
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname); // TODO maybe change name to include plantID etc.
-  },
-});
-
 // TODO replace with dotenv package stuff probably
 // PORT
 const port = process.env.PORT || 8000;
