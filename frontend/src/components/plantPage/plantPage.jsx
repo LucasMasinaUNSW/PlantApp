@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Welcome from "../welcome/welcome";
 import Button from "../button/button";
 import "./plantPage.css";
 import PlantPost from "../plantPost/plantPost";
@@ -13,6 +12,7 @@ class PlantPage extends Component {
 
   handleAddPlant = (newPlant) => {
     // TODO add id to plant object before pushing onto 'plants', use length of 'plants' as id
+    newPlant.id = this.state.plants.length;
     this.state.plants.push(newPlant);
     this.setState({
       displayNewPlantForm: false,
@@ -40,14 +40,16 @@ class PlantPage extends Component {
             handleClick={this.handleDisplayNewPlantForm}
           />
         )}
-        {this.state.plants.map((plant) => (
-          <PlantPost
-            key={plant.id}
-            name={plant.name}
-            location={plant.location}
-            image={plant.image}
-          />
-        ))}
+        <ul>
+          {this.state.plants.map((plant) => (
+            <PlantPost
+              key={plant.id}
+              name={plant.name}
+              location={plant.location}
+              image={plant.image}
+            />
+          ))}
+        </ul>
       </div>
     );
   }

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Welcome from "../welcome/welcome";
 import "./userPage.css";
 
 class UserPage extends Component {

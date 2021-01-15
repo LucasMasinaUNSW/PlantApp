@@ -6,6 +6,7 @@ import "./newPlantForm.css";
 class NewPlantForm extends Component {
   state = {
     plant: {
+      id: null,
       name: "",
       location: "",
       image: "",
@@ -19,14 +20,16 @@ class NewPlantForm extends Component {
   handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
-    this.state.plant[name] = value;
-    this.setState(this.state);
+    let tempState = this.state;
+    tempState.plant[name] = value;
+    this.setState(tempState);
   }
 
   handleFileChange = (event) => {
-    this.state.file = event.target.files[0];
-    this.state.plant.image = event.target.files[0].name;
-    this.setState(this.state);
+    let tempState = this.state;
+    tempState.file = event.target.files[0];
+    tempState.plant.image = event.target.files[0].name;
+    this.setState(tempState);
   };
 
   uploadFile = () => {

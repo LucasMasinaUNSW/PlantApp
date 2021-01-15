@@ -4,6 +4,7 @@ import "./plantPost.css";
 
 class PlantPost extends Component {
   state = {
+    id: this.props.id,
     name: this.props.name,
     location: this.props.location,
     image: this.props.image,
@@ -21,18 +22,22 @@ class PlantPost extends Component {
   };
 
   render() {
+    const image = this.fetchImage();
+    console.log("plantID: " + this.state.id);
+    console.log("image: " + image);
     return (
-      <div>
+      <li>
         <h1>{this.state.name}</h1>
         <h2>{this.state.location}</h2>
-        <img
+        <img src={image} alt={this.state.image} />
+        {/* <img
           src={this.fetchImage()}
           alt={this.state.image}
           onLoad={() => {
             URL.revokeObjectURL(this.src); // check if works
           }}
-        />
-      </div>
+        /> */}
+      </li>
     );
   }
 }

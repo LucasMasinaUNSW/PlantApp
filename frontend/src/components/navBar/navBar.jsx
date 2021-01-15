@@ -18,11 +18,11 @@ class NavBar extends Component {
         <nav>
           <ul>
             <Link to="/">
-              <Logo />
+              <Logo key="logo" />
             </Link>
             {this.state.navLinks.map((navLink) => (
-              <Link to={navLink.path}>
-                <NavLink key={navLink.id} value={navLink.value} />
+              <Link key={navLink.id} to={navLink.path}>
+                <NavLink value={navLink.value} />
               </Link>
             ))}
           </ul>
