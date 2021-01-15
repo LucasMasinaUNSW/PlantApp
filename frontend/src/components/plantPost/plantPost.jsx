@@ -4,39 +4,39 @@ import "./plantPost.css";
 
 class PlantPost extends Component {
   state = {
-    id: this.props.id,
     name: this.props.name,
     location: this.props.location,
     image: this.props.image,
+    imageURL: "",
   };
 
-  fetchImage = () => {
+  componentDidMount = () => {
+    console.log("component mounted");
     const url = `http://localhost:8000/plants/download/${this.state.image}`;
     axios.get(url, { responseType: "blob" }).then((res) => {
-      console.log(res);
       const file = new File([res.data], { type: "image/jpeg" });
       const imageURL = URL.createObjectURL(file);
-      console.log(`imageURL: ${imageURL}`);
-      return imageURL;
+      let tempState = this.state;
+      tempState.imageURL = imageURL;
+      console.log("setting state");
+      this.setState(tempState);
     });
   };
 
   render() {
-    const image = this.fetchImage();
-    console.log("plantID: " + this.state.id);
-    console.log("image: " + image);
+    console.log("imageURL rendered: " + this.state.imageURL);
     return (
       <li>
         <h1>{this.state.name}</h1>
         <h2>{this.state.location}</h2>
-        <img src={image} alt={this.state.image} />
-        {/* <img
-          src={this.fetchImage()}
+        <img
+          src={this.state.imageURL}
           alt={this.state.image}
+          //alt={"test"}
           onLoad={() => {
-            URL.revokeObjectURL(this.src); // check if works
+            URL.revokeObjectURL(this.state.imageURL); // removes uneccessary ObjectURL once image is loaded
           }}
-        /> */}
+        />
       </li>
     );
   }

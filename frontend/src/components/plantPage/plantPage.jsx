@@ -11,7 +11,6 @@ class PlantPage extends Component {
   };
 
   handleAddPlant = (newPlant) => {
-    // TODO add id to plant object before pushing onto 'plants', use length of 'plants' as id
     newPlant.id = this.state.plants.length;
     this.state.plants.push(newPlant);
     this.setState({

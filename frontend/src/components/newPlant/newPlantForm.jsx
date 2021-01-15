@@ -6,7 +6,6 @@ import "./newPlantForm.css";
 class NewPlantForm extends Component {
   state = {
     plant: {
-      id: null,
       name: "",
       location: "",
       image: "",
@@ -41,7 +40,7 @@ class NewPlantForm extends Component {
       })
       .then((res) => {
         // then print response status
-        console.log(res.statusText);
+        console.log("file upload " + res.statusText);
       });
   };
 
