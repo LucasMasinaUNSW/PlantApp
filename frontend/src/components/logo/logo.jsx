@@ -5,7 +5,7 @@ import "./logo.css";
 class Logo extends Component {
   render() {
     return (
-      <li>
+      <li className="logo">
         <img src={logo} alt="" />
       </li>
     );

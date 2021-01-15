@@ -6,7 +6,7 @@ class NavLink extends Component {
     text: this.props.value,
   };
   render() {
-    return <li>{this.state.text}</li>;
+    return <li className="navLink">{this.state.text}</li>;
   }
 }
 
