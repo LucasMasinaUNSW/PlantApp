@@ -25,6 +25,7 @@ class PlantPost extends Component {
 
   render() {
     console.log("imageURL rendered: " + this.state.imageURL);
+    console.log("imageFile rendered: " + this.state.imageFile);
     return (
       <li>
         <h1>{this.state.name}</h1>
